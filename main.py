@@ -2,6 +2,16 @@ import math
 import random
 from colorPrint import CLColors
 
+def testValue(pseudo,real):
+    marginOfError = .001
+    error = abs(real - pseudo)
+    if(error<marginOfError):
+        CLColors.printSucces("The margin of error is acceptable")
+    else:
+        print(pseudo,real)
+        print(f"{error}>{marginOfError}")
+        CLColors.printError("The margin of error is not acceptable")
+
 #Checked and tested
 def simpsonIntegration(a,b,fn):
     """
@@ -15,7 +25,7 @@ def simpsonIntegration(a,b,fn):
     fn is a function that will be the basis for the integration.
         it must recieve only one param.
     """
-    SIMPSON_N = 1000000
+    SIMPSON_N = 10000000
     h = (b-a)/SIMPSON_N
     sumEven = 0
     sumOdd = 0
@@ -111,3 +121,9 @@ class fraction :
         else:
             CLColors.printError("Failure")
 
+def test(x):
+    return math.cos(x)
+
+integralS = simpsonIntegration(0,3*math.pi/8,test)
+
+testValue(integralS,math.sin(3*math.pi/8))
