@@ -62,6 +62,7 @@ def gcd(a,b):
     else: 
         return gcd(b, a % b) 
 
+#Checked and tested
 class fraction : 
 
     def __init__(self, value):
