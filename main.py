@@ -3,7 +3,7 @@ import random
 from colorPrint import CLColors
 
 def testValue(pseudo,real):
-    marginOfError = .001
+    marginOfError = .0001
     error = abs(real - pseudo)
     if(error<marginOfError):
         CLColors.printSucces("The margin of error is acceptable")

@@ -1,25 +1,37 @@
+import enum
+
+class ColorType(enum.Enum):
+    successGreen    = '\033[92m'
+    successBlue     = '\033[94m'
+    header          = '\033[95m'
+    warning         = '\033[93m'
+    fail            = '\033[91m'
+    bold            = '\033[1m'
+    underline       = '\033[4m'
+    endc            = '\033[0m'
+
 class CLColors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
+
+    @staticmethod
+    def getColorString(string = "",color = ColorType.header) -> str:
+        return f"{color.value}{string}{ColorType.endc.value}"
 
     @staticmethod
     def printSucces(s):
-        print(f"{CLColors.HEADER}{s}{CLColors.ENDC}")
+        s = CLColors.getColorString(s,ColorType.successGreen)
+        print(s)
     
     @staticmethod
     def printError(s):
-        print(f"{CLColors.FAIL}{s}{CLColors.ENDC}")
+        s = CLColors.getColorString(s,ColorType.fail)
+        print(s)
 
     @staticmethod
     def printWarning(s):
-        print(f"{CLColors.WARNING}{s}{CLColors.ENDC}")
+        s = CLColors.getColorString(s,ColorType.warning)
+        print(s)
 
     @staticmethod
     def printOkB(s):
-        print(f"{CLColors.OKBLUE}{s}{CLColors.ENDC}")
+        s = CLColors.getColorString(s,ColorType.successBlue)
+        print(s)
